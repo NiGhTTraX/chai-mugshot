@@ -4,7 +4,8 @@
   "description": "Chai plugin for Mugshot visual testing lib",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "linter": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "homepage": "https://github.com/uberVU/chai-mugshot#readme",
   "devDependencies": {
     "chai": "^3.2.0",
+    "eslint": "^1.2.1",
     "webdriverio": "^3.1.0"
   },
   "dependencies": {
