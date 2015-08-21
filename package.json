@@ -1,0 +1,33 @@
+{
+  "name": "chai-mugshot",
+  "version": "0.0.0",
+  "description": "Chai plugin for Mugshot visual testing lib",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uberVU/chai-mugshot.git"
+  },
+  "keywords": [
+    "chai",
+    "mugshot",
+    "plugin",
+    "assertion",
+    "expect"
+  ],
+  "author": "Simion Florentin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uberVU/chai-mugshot/issues"
+  },
+  "homepage": "https://github.com/uberVU/chai-mugshot#readme",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "webdriverio": "^3.1.0"
+  },
+  "dependencies": {
+    "q": "^1.4.1"
+  }
+}
