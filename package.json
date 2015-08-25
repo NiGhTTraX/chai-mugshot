@@ -23,7 +23,6 @@
   "bugs": {
     "url": "https://github.com/uberVU/chai-mugshot/issues"
   },
-  "homepage": "https://github.com/uberVU/chai-mugshot#readme",
   "devDependencies": {
     "chai": "^3.2.0",
     "eslint": "^1.2.1",
