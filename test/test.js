@@ -36,7 +36,7 @@ describe('Chai-Mugshot Plugin', function() {
   before(function() {
     var options = {
       desiredCapabilities: {
-        browserName: 'firefox'
+        browserName: 'phantomjs'
       }
     };
 
