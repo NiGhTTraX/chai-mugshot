@@ -11,7 +11,7 @@ var name = 'great';
 
 function cleanUp() {
   var ext = '.png';
-  var dir  = path.join(__dirname, '../visual-tests');
+  var dir  = path.join(__dirname, '..', 'visual-tests');
 
   fs.unlink(path.join(dir, name + ext), function() {});
   fs.unlink(path.join(dir, name + '.new' + ext), function() {});
@@ -23,7 +23,7 @@ function cleanUp() {
 describe('Chai-Mugshot Plugin', function() {
   this.timeout(0);
 
-  var url = 'file://' + path.join(__dirname, 'test.htm'),
+  var url = 'file://' + path.join(__dirname, 'test.html'),
       noSelector = {
         name: name
       },
