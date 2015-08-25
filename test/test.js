@@ -23,7 +23,7 @@ function cleanUp() {
 describe('Chai-Mugshot Plugin', function() {
   this.timeout(0);
 
-  var url = 'file:///Users/florentin-simion/Desktop/chai-mugshot/test/test.htm',
+  var url = 'file://' + path.join(__dirname, 'test.htm'),
       noSelector = {
         name: name
       },
