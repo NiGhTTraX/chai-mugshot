@@ -1,9 +1,9 @@
 var chai = require('chai');
 var expect = require('chai').expect;
-var wdio = require('webdriverio');
-var wdioAdaptor = require('../mugshot/lib/adaptors/webdriverio.js');
-var Mugshot = require('../mugshot/lib/mugshot.js');
+var Mugshot = require('mugshot');
 var chaiMugshot = require('../index.js');
+var wdioAdapter = Mugshot.adapters.WebdriverIO;
+var wdio = require('webdriverio');
 var fs = require('fs');
 var path = require('path');
 
@@ -33,36 +33,31 @@ describe('Chai-Mugshot Plugin', function() {
       },
       wdioInstance;
 
-  before(function(done) {
+  before(function() {
     var options = {
       desiredCapabilities: {
         browserName: 'firefox'
       }
     };
 
-    wdioInstance = wdio.remote(options).init().url(url)
+    return wdioInstance = wdio.remote(options).init().url(url)
       .then(function() {
-        var browser = new wdioAdaptor(wdioInstance);
-
+        var browser = new wdioAdapter(this);
         var mugshot = new Mugshot(browser);
 
         chai.use(chaiMugshot(mugshot));
-        done();
       });
   });
 
   it('should be identical if there is no previous baseline', function() {
-
     return expect(withSelector).to.be.identical;
   });
 
   it('should be identical if there are no differences', function() {
-
     return expect(withSelector).to.be.identical;
   });
 
   it('should not be identical if there are differences', function() {
-
     return expect(noSelector).to.not.be.identical;
   });
 

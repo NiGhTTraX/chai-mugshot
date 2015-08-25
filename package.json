@@ -27,6 +27,7 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "eslint": "^1.2.1",
+    "mugshot": "0.0.1",
     "webdriverio": "^3.1.0"
   },
   "dependencies": {
