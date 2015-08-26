@@ -17,7 +17,7 @@ var dir = path.join(__dirname, '..', 'visual-tests');
 
 function cleanUp() {
   var paths = [path.join(dir, name + ext), path.join(dir, name + '.new' + ext),
-    path.join(dir, name + '.diff' + ext)];
+               path.join(dir, name + '.diff' + ext)];
 
   for (var i = 0; i < paths.length; i++) {
     if (fs.existsSync(paths[i])) {
@@ -86,20 +86,20 @@ describe('Chai-Mugshot Plugin', function() {
     return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
   });
 
-  it('should not throw if there is expected to be equal', function() {
+  it('should not throw if there if there are no differences', function() {
     return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
   });
 
-  it('should throw error if there is expected to not be equal', function() {
+  it('should throw error if there are differences', function() {
     return expect(expect(withSelector).to.not.be.identical).to.be
       .rejectedWith(AssertionError);
   });
 
-  it('should not throw if there is expected to have differences', function() {
+  it('should not throw if there are differences', function() {
     return expect(expect(noSelector).to.not.be.identical).to.be.fulfilled;
   });
 
-  it('should throw if there is not expected to have differences', function() {
+  it('should throw if there are no differences', function() {
     return expect(expect(noSelector).to.be.identical).to.be
       .rejectedWith(AssertionError);
   });
