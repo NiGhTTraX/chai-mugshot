@@ -94,7 +94,7 @@ describe('Chai-Mugshot Plugin', function() {
     return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
   });
 
-  it('should not throw if there if there are no differences', function() {
+  it('should not throw if there are no differences', function() {
     return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
   });
 
