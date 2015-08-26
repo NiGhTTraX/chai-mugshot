@@ -24,6 +24,12 @@
   "bugs": {
     "url": "https://github.com/uberVU/chai-mugshot/issues"
   },
+  "dependencies": {
+    "q": "^1.4.1"
+  },
+  "peerDependencies": {
+    "chai": "^3.2.0"
+  },
   "devDependencies": {
     "chai": "^3.2.0",
     "chai-as-promised": "^5.1.0",
@@ -31,8 +37,5 @@
     "mugshot": "0.0.1",
     "phantomjs": "^1.9.18",
     "webdriverio": "^3.1.0"
-  },
-  "dependencies": {
-    "q": "^1.4.1"
   }
 }
