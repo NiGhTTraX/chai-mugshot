@@ -1,9 +1,6 @@
 # Chai-Mugshot
 
-Chai plugin for the Mugshot regression lib.
-
-This plugin helps you to `assert` better with [Chai](http://chaijs.com/) and [Mugshot](https://github.com/uberVU/mugshot). It 
-returns a `resolved` or a `rejected` promise (Promises/A+).
+[Chai](http://chaijs.com/) plugin for the [Mugshot](https://github.com/uberVU/mugshot) Visual regression testing lib.
 
 ## Install
 
@@ -38,14 +35,13 @@ describe('Suite', function() {
         var browser = new WebdriverIOAdaptor(webdriverioInstance);
         var mugshot = new Mugshot(browser);
         
-        // Instructing Chai to use the plugin and passing to the Chai-Mugshot plugin a Mugshot instance
         chai.use(chaiMugshot(mugshot));
-
+        
         done();
       });
   });
 
-  it('should be the same component', function() {
+  it('should always look the same', function() {
     var captureItem = {
       name: 'myComponent',
       selector: '#myComponent'
@@ -54,7 +50,8 @@ describe('Suite', function() {
     return expect(captureItem).to.be.identical;
   });
   
-  it('should always differ'. function() {
+  it('should always differ', function() {
+  // see https://github.com/uberVU/mugshot#methods for details
     var captureItem = {
       name: 'component',
       selector: '#component'
@@ -69,7 +66,11 @@ describe('Suite', function() {
 });
 ```
 
-## Api
+## API
+
+The plugin returns a `promise` that tells [Mocha](http://mochajs.org/) or to `others test runner`, that the test is `async`.
+
+For the plugin to function, you must pass a `Mugshot` instance as in the example provided above.
 
 ### Properties
 
