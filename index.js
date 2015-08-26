@@ -26,8 +26,12 @@ module.exports = function(mugshot) {
           if (error) {
             deferred.reject(error);
           } else {
-            deferred.resolve(
-              _this.assert(result, msg.affirmative, msg.negative));
+            try {
+              _this.assert(result, msg.affirmative, msg.negative);
+              deferred.resolve();
+            } catch(error) {
+              deferred.reject(error);
+            }
           }
         });
 
