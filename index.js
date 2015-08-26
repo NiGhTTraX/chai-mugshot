@@ -4,8 +4,8 @@ module.exports = function(mugshot) {
   return function(chai) {
     var Assertion = chai.Assertion;
 
-    function composeMessage(message) {
-      var standardMessage = 'expected baseline and screenshot';
+    function composeMessage(message, actual) {
+      var standardMessage = 'expected baseline and screenshot of #{act}';
 
       return {
         affirmative: standardMessage + ' to ' + message,
