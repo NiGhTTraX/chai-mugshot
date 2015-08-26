@@ -15,7 +15,6 @@ module.exports = function(mugshot) {
 
     function mugshotProperty(name, message) {
       var msg = composeMessage(message);
-      var _this = this;
 
       Assertion.addProperty(name, function() {
         var captureItem = this._obj;
