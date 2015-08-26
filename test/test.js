@@ -20,13 +20,21 @@ function cleanUp() {
                path.join(dir, name + '.diff' + ext)];
 
   for (var i = 0; i < paths.length; i++) {
-    if (fs.existsSync(paths[i])) {
+    try {
       fs.unlinkSync(paths[i]);
+    } catch(error) {
+      if (error.code != 'ENOENT') {
+        throw error;
+      }
     }
   }
 
-  if (fs.existsSync(dir)) {
+  try {
     fs.rmdirSync(dir);
+  } catch(error) {
+    if (error.code != 'ENOENT') {
+      throw error;
+    }
   }
 }
 
