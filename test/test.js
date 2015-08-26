@@ -61,7 +61,8 @@ describe('Chai-Mugshot Plugin', function() {
   });
 
   it('should be rejected if mugshot fails', function() {
-    return expect(expect(brokenSelector).to.be.identical).to.be.rejected;
+    return expect(expect(brokenSelector).to.be.identical).to.be
+      .rejectedWith(Error);
   });
 
   it('should not throw if there is no previous baseline', function() {
@@ -73,7 +74,8 @@ describe('Chai-Mugshot Plugin', function() {
   });
 
   it('should throw error if there is expected to not be equal', function() {
-    return expect(expect(withSelector).to.not.be.identical).to.be.fulfilled;
+    return expect(expect(withSelector).to.not.be.identical).to.be
+      .rejectedWith(AssertionError);
   });
 
   it('should not throw if there is expected to have differences', function() {
@@ -81,7 +83,8 @@ describe('Chai-Mugshot Plugin', function() {
   });
 
   it('should throw if there is not expected to have differences', function() {
-    return expect(expect(noSelector).to.be.identical).to.be.fulfilled;
+    return expect(expect(noSelector).to.be.identical).to.be
+      .rejectedWith(AssertionError);
   });
 
   after(function() {
