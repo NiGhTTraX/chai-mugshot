@@ -1,7 +1,7 @@
 var Q = require('q');
 
 module.exports = function(mugshot) {
-  return function(chai, utils) {
+  return function(chai) {
     var Assertion = chai.Assertion;
 
     function composeMessage(message) {

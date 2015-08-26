@@ -4,7 +4,7 @@ var AssertionError = require('chai').AssertionError;
 var chaiAsPromised = require('chai-as-promised');
 var chaiMugshot = require('../index.js');
 var Mugshot = require('mugshot');
-var wdioAdapter = Mugshot.adapters.WebdriverIO;
+var WdioAdapter = Mugshot.adapters.WebdriverIO;
 var wdio = require('webdriverio');
 var fs = require('fs');
 var path = require('path');
@@ -41,7 +41,7 @@ describe('Chai-Mugshot Plugin', function() {
       noSelector = {
         name: name
       },
-      withSelector  = {
+      withSelector = {
         name: name,
         selector: '#rectangle'
       },
@@ -56,7 +56,7 @@ describe('Chai-Mugshot Plugin', function() {
 
     return wdioInstance = wdio.remote(options).init().url(url)
       .then(function() {
-        var browser = new wdioAdapter(this);
+        var browser = new WdioAdapter(this);
         mugshot = new Mugshot(browser);
 
         chai.use(chaiMugshot(mugshot));
@@ -66,7 +66,7 @@ describe('Chai-Mugshot Plugin', function() {
   beforeEach(function(done) {
     cleanUp();
 
-    mugshot.test(withSelector, function(error, result) {
+    mugshot.test(withSelector, function(error) {
       if (error) {
         throw error;
       }
@@ -87,7 +87,7 @@ describe('Chai-Mugshot Plugin', function() {
   });
 
   it('should not throw if there is expected to be equal', function() {
-      return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
+    return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
   });
 
   it('should throw error if there is expected to not be equal', function() {
