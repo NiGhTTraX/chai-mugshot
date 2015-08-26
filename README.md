@@ -22,7 +22,7 @@ var WebdriverIOAdapter = Mugshot.adapters.WebdriverIO;
 var webdriverio = require('webdriverio');
 
 describe('Suite', function() {
-  var mugshot, webdriverioInstance;
+  var webdriverioInstance;
 
   before(function(done) {
     var options = {
