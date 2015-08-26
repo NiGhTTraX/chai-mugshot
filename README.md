@@ -56,7 +56,7 @@ describe('Suite', function() {
   
   it('should always differ'. function() {
     var captureItem = {
-      name: 'component,
+      name: 'component',
       selector: '#component'
     };
     
