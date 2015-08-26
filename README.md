@@ -68,10 +68,10 @@ describe('Suite', function() {
 
 ## API
 
-The plugin returns a `promise` that tells [Mocha](http://mochajs.org/) or to `others test runner`, that the test is `async`.
-
 For the plugin to function, you must pass a `Mugshot` instance as in the example provided above.
 
 ### Properties
+
+The assertion properties return a `promise` that tells [Mocha](http://mochajs.org/) or `other test runners`, that the test is `async`.
 
 - **identical** - asserts that the `baseline` on disk of the `capturItem` is identical to the current `screenshot`
