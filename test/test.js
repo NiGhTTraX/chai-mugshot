@@ -16,12 +16,18 @@ var name = 'great';
 function cleanUp() {
   var ext = '.png';
   var dir  = path.join(__dirname, '..', 'visual-tests');
+  var paths = [path.join(dir, name + ext), path.join(dir, name + '.new' + ext),
+    path.join(dir, name + '.diff' + ext)];
 
-  fs.unlink(path.join(dir, name + ext), function() {});
-  fs.unlink(path.join(dir, name + '.new' + ext), function() {});
-  fs.unlink(path.join(dir, name + '.diff' + ext), function() {});
+  for (var i = 0; i < paths.length; i++) {
+    if (fs.existsSync(paths[i])) {
+      fs.unlinkSync(paths[i]);
+    }
+  }
 
-  fs.rmdir(dir, function() {});
+  if (fs.existsSync(dir)) {
+    fs.rmdirSync(dir);
+  }
 }
 
 describe('Chai-Mugshot Plugin', function() {
