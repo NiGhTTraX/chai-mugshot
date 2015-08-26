@@ -12,10 +12,10 @@ var path = require('path');
 chai.use(chaiAsPromised);
 
 var name = 'great';
+var ext = '.png';
+var dir = path.join(__dirname, '..', 'visual-tests');
 
 function cleanUp() {
-  var ext = '.png';
-  var dir  = path.join(__dirname, '..', 'visual-tests');
   var paths = [path.join(dir, name + ext), path.join(dir, name + '.new' + ext),
     path.join(dir, name + '.diff' + ext)];
 
@@ -43,12 +43,9 @@ describe('Chai-Mugshot Plugin', function() {
       },
       withSelector  = {
         name: name,
-        selector: '#greenRectangle'
+        selector: '#rectangle'
       },
-      fulfilledThrowingProm = {
-        state: 'pending'
-      },
-      wdioInstance;
+      wdioInstance, mugshot;
 
   before(function() {
     var options = {
@@ -60,10 +57,22 @@ describe('Chai-Mugshot Plugin', function() {
     return wdioInstance = wdio.remote(options).init().url(url)
       .then(function() {
         var browser = new wdioAdapter(this);
-        var mugshot = new Mugshot(browser);
+        mugshot = new Mugshot(browser);
 
         chai.use(chaiMugshot(mugshot));
       });
+  });
+
+  beforeEach(function(done) {
+    cleanUp();
+
+    mugshot.test(withSelector, function(error, result) {
+      if (error) {
+        throw error;
+      }
+
+      done();
+    });
   });
 
   it('should be rejected if mugshot fails', function() {
@@ -72,11 +81,13 @@ describe('Chai-Mugshot Plugin', function() {
   });
 
   it('should not throw if there is no previous baseline', function() {
+    fs.unlinkSync(path.join(dir, name + ext));
+
     return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
   });
 
   it('should not throw if there is expected to be equal', function() {
-    return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
+      return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
   });
 
   it('should throw error if there is expected to not be equal', function() {
