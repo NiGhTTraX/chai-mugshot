@@ -121,9 +121,7 @@ describe('Chai-Mugshot Plugin', function() {
 
     it('should put the result on the provided object', function() {
       return expect(withSelector).to.be.identical.then(function() {
-        expect(testRunnerCtx).to.have.ownProperty('result').and.to.deep.equal({
-          result: true
-        });
+        expect(testRunnerCtx).to.have.ownProperty('result');
       });
     });
   });
