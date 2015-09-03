@@ -23,7 +23,7 @@ function cleanUp() {
     try {
       fs.unlinkSync(paths[i]);
     } catch(error) {
-      if (error.code != 'ENOENT') {
+      if (error.code !== 'ENOENT') {
         throw error;
       }
     }
@@ -32,7 +32,7 @@ function cleanUp() {
   try {
     fs.rmdirSync(dir);
   } catch(error) {
-    if (error.code != 'ENOENT') {
+    if (error.code !== 'ENOENT') {
       throw error;
     }
   }
