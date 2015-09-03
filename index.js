@@ -1,6 +1,6 @@
 var Q = require('q');
 
-module.exports = function(mugshot) {
+module.exports = function(mugshot, testRunnerCtx) {
   return function(chai) {
     var Assertion = chai.Assertion;
 
@@ -25,6 +25,10 @@ module.exports = function(mugshot) {
           if (error) {
             deferred.reject(error);
           } else {
+            if (testRunnerCtx !== undefined) {
+              testRunnerCtx.result = result;
+            }
+
             try {
               _this.assert(result, msg.affirmative, msg.negative);
               deferred.resolve();
