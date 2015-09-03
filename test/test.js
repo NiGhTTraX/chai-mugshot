@@ -112,6 +112,22 @@ describe('Chai-Mugshot Plugin', function() {
       .rejectedWith(AssertionError);
   });
 
+  describe('Test Runner Context', function() {
+    var testRunnerCtx = {};
+
+    before(function() {
+      chai.use(chaiMugshot(mugshot, testRunnerCtx));
+    });
+
+    it('should put the result on the provided object', function() {
+      return expect(withSelector).to.be.identical.then(function() {
+        expect(testRunnerCtx).to.have.ownProperty('result').and.to.deep.equal({
+          result: true
+        });
+      });
+    });
+  });
+
   after(function() {
     cleanUp();
     return wdioInstance.end();
