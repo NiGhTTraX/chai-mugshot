@@ -83,36 +83,46 @@ describe('Chai-Mugshot Plugin', function() {
     });
   });
 
-  it('should be rejected if mugshot fails', function() {
+  it('should be rejected with Error if Mugshot fails', function() {
     return expect(expect(brokenSelector).to.be.identical).to.be
       .rejectedWith(Error);
   });
 
   describe('No baseline', function() {
-    it('should not throw if there is no previous baseline', function() {
-      fs.unlinkSync(path.join(dir, name + ext));
+    beforeEach(function() {
+      cleanUp();
+    });
 
+    it('should be fulfilled if expected to be identical', function() {
       return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
+    });
+
+    it('should be rejected with AssertionError if expected to not be identical',
+       function() {
+      return expect(expect(withSelector).to.not.be.identical).to.be
+        .rejectedWith(AssertionError);
     });
   });
 
   describe('No differences', function() {
-    it('should not throw if there are no differences', function() {
+    it('should be fullfilled if expected to be identical', function() {
       return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
     });
 
-    it('should throw error if there are differences', function() {
+    it('should be rejected with AssertionError if expected to not be identical',
+       function() {
       return expect(expect(withSelector).to.not.be.identical).to.be
         .rejectedWith(AssertionError);
     });
   });
 
   describe('With differences', function() {
-    it('should not throw if there are differences', function() {
+    it('should be fulfilled if expected to not be identical', function() {
       return expect(expect(noSelector).to.not.be.identical).to.be.fulfilled;
     });
 
-    it('should throw if there are no differences', function() {
+    it('should be rejected with AssertionError if expected to be identical',
+       function() {
       return expect(expect(noSelector).to.be.identical).to.be
         .rejectedWith(AssertionError);
     });
