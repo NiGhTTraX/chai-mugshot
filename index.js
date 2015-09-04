@@ -1,5 +1,12 @@
 var Q = require('q');
 
+/**
+ * Chai-Mugshot Plugin
+ *
+ * @param mugshot - Mugshot instance
+ * @param testRunnerCtx - Context of the test runner where the assertions are
+ *    done
+ */
 module.exports = function(mugshot, testRunnerCtx) {
   return function(chai) {
     var Assertion = chai.Assertion;
