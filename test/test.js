@@ -46,10 +46,10 @@ describe('Chai-Mugshot Plugin', function() {
         name: name,
         selector: 'anything'
       },
-      noSelector = {
+      differencesSelector = {
         name: name
       },
-      withSelector = {
+      noDifferencesSelector = {
         name: name,
         selector: '#rectangle'
       },
@@ -74,7 +74,7 @@ describe('Chai-Mugshot Plugin', function() {
   beforeEach(function(done) {
     cleanUp();
 
-    mugshot.test(withSelector, function(error) {
+    mugshot.test(noDifferencesSelector, function(error) {
       if (error) {
         throw error;
       }
@@ -94,36 +94,39 @@ describe('Chai-Mugshot Plugin', function() {
     });
 
     it('should be fulfilled if expected to be identical', function() {
-      return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
+      return expect(expect(noDifferencesSelector).to.be.identical).to.be
+        .fulfilled;
     });
 
     it('should be rejected with AssertionError if expected to not be identical',
        function() {
-      return expect(expect(withSelector).to.not.be.identical).to.be
+      return expect(expect(noDifferencesSelector).to.not.be.identical).to.be
         .rejectedWith(AssertionError);
     });
   });
 
   describe('No differences', function() {
     it('should be fullfilled if expected to be identical', function() {
-      return expect(expect(withSelector).to.be.identical).to.be.fulfilled;
+      return expect(expect(noDifferencesSelector).to.be.identical).to.be
+        .fulfilled;
     });
 
     it('should be rejected with AssertionError if expected to not be identical',
        function() {
-      return expect(expect(withSelector).to.not.be.identical).to.be
+      return expect(expect(noDifferencesSelector).to.not.be.identical).to.be
         .rejectedWith(AssertionError);
     });
   });
 
   describe('With differences', function() {
     it('should be fulfilled if expected to not be identical', function() {
-      return expect(expect(noSelector).to.not.be.identical).to.be.fulfilled;
+      return expect(expect(differencesSelector).to.not.be.identical).to.be
+        .fulfilled;
     });
 
     it('should be rejected with AssertionError if expected to be identical',
        function() {
-      return expect(expect(noSelector).to.be.identical).to.be
+      return expect(expect(differencesSelector).to.be.identical).to.be
         .rejectedWith(AssertionError);
     });
   });
@@ -136,7 +139,7 @@ describe('Chai-Mugshot Plugin', function() {
     });
 
     it('should put the result on the provided object', function() {
-      return expect(withSelector).to.be.identical.then(function() {
+      return expect(noDifferencesSelector).to.be.identical.then(function() {
         expect(testRunnerCtx).to.have.ownProperty('result');
       });
     });
