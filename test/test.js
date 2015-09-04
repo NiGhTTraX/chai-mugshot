@@ -23,7 +23,7 @@ function cleanUp() {
     try {
       fs.unlinkSync(paths[i]);
     } catch(error) {
-      if (error.code != 'ENOENT') {
+      if (error.code !== 'ENOENT') {
         throw error;
       }
     }
@@ -32,7 +32,7 @@ function cleanUp() {
   try {
     fs.rmdirSync(dir);
   } catch(error) {
-    if (error.code != 'ENOENT') {
+    if (error.code !== 'ENOENT') {
       throw error;
     }
   }
@@ -110,6 +110,20 @@ describe('Chai-Mugshot Plugin', function() {
   it('should throw if there are no differences', function() {
     return expect(expect(noSelector).to.be.identical).to.be
       .rejectedWith(AssertionError);
+  });
+
+  describe('Test Runner Context', function() {
+    var testRunnerCtx = {};
+
+    before(function() {
+      chai.use(chaiMugshot(mugshot, testRunnerCtx));
+    });
+
+    it('should put the result on the provided object', function() {
+      return expect(withSelector).to.be.identical.then(function() {
+        expect(testRunnerCtx).to.have.ownProperty('result');
+      });
+    });
   });
 
   after(function() {
