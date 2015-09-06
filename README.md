@@ -1,4 +1,4 @@
-# Chai-Mugshot
+# Chai-Mugshot [![Build Status](https://travis-ci.org/uberVU/chai-mugshot.svg?branch=master)](https://travis-ci.org/uberVU/chai-mugshot)
 
 [Chai](http://chaijs.com/) plugin for the [Mugshot](https://github.com/uberVU/mugshot) Visual regression testing lib.
 
