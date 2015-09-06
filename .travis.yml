@@ -1,0 +1,5 @@
+language: node_js
+script:
+  - npm run browser &
+  - sleep 3
+  - npm test
