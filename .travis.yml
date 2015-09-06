@@ -1,5 +1,6 @@
 language: node_js
 script:
+  - npm run lint
   - npm run browser &
   - sleep 3
   - npm test
