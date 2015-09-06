@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "browser": "phantomjs --webdriver=4444",
-    "linter": "eslint ."
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
