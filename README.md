@@ -2,11 +2,13 @@
 
 [Chai](http://chaijs.com/) plugin for the [Mugshot](https://github.com/uberVU/mugshot) Visual regression testing lib.
 
+
 ## Install
 
 ```sh
 npm install --save-dev chai-mugshot
 ```
+
 
 ## Usage
 
@@ -66,9 +68,11 @@ describe('Suite', function() {
 });
 ```
 
+
 ## API
 
 For the plugin to function, you must pass a `Mugshot` instance as in the example provided above.
+
 
 ### Properties
 
