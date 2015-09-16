@@ -39,7 +39,7 @@ module.exports = function(mugshot, testRunnerCtx) {
             try {
               _this.assert(result, msg.affirmative, msg.negative);
               deferred.resolve();
-            } catch(error) {
+            } catch (error) {
               deferred.reject(error);
             }
           }
