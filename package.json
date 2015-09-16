@@ -33,7 +33,7 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "chai-as-promised": "^5.1.0",
-    "eslint": "^1.2.1",
+    "eslint": "1.4.3",
     "mocha": "^2.3.0",
     "mugshot": "0.0.1",
     "phantomjs": "^1.9.18",
