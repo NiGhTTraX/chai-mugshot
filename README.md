@@ -34,7 +34,7 @@ describe('Suite', function() {
       .url('http://example.com')
       .then(function() {
       
-        var browser = new WebdriverIOAdaptor(webdriverioInstance);
+        var browser = new WebdriverIOAdapter(webdriverioInstance);
         var mugshot = new Mugshot(browser);
         
         chai.use(chaiMugshot(mugshot));
