@@ -1,6 +1,6 @@
 {
   "name": "chai-mugshot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Chai plugin for Mugshot visual testing lib",
   "main": "index.js",
   "scripts": {
