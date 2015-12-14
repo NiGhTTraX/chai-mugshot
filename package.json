@@ -35,7 +35,7 @@
     "chai-as-promised": "^5.1.0",
     "eslint": "1.4.3",
     "mocha": "^2.3.0",
-    "mugshot": "0.0.1",
+    "mugshot": "0.2.0",
     "phantomjs": "^1.9.18",
     "webdriverio": "^3.1.0"
   }
