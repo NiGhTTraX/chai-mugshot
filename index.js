@@ -23,32 +23,26 @@ module.exports = function(mugshot, testRunnerCtx) {
 
       Assertion.addProperty(name, function() {
         var _this = this,
-            captureItem = this._obj,
-            promise, resolve, reject;
+            captureItem = this._obj;
 
-        promise = new Promise(function(res, rej) {
-          resolve = res;
-          reject = rej;
-        });
-
-        mugshot.test(captureItem, function(error, result) {
-          if (error) {
-            reject(error);
-          } else {
-            if (testRunnerCtx !== undefined) {
-              testRunnerCtx.result = result;
-            }
-
-            try {
-              _this.assert(result.isEqual, msg.affirmative, msg.negative);
-              resolve();
-            } catch (error) {
+        return new Promise(function(resolve, reject) {
+          mugshot.test(captureItem, function(error, result) {
+            if (error) {
               reject(error);
-            }
-          }
-        });
+            } else {
+              if (testRunnerCtx !== undefined) {
+                testRunnerCtx.result = result;
+              }
 
-        return promise;
+              try {
+                _this.assert(result.isEqual, msg.affirmative, msg.negative);
+                resolve();
+              } catch (error) {
+                reject(error);
+              }
+            }
+          });
+        });
       });
     }
 
