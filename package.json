@@ -24,9 +24,6 @@
   "bugs": {
     "url": "https://github.com/uberVU/chai-mugshot/issues"
   },
-  "dependencies": {
-    "q": "^1.4.1"
-  },
   "peerDependencies": {
     "chai": "^3.2.0",
     "mugshot": "0.2.0"
