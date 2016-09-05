@@ -1,3 +1,5 @@
+var Q = require('q');
+
 /**
  * Chai-Mugshot Plugin
  *
@@ -9,8 +11,13 @@ module.exports = function(mugshot, testRunnerCtx) {
   return function(chai) {
     var Assertion = chai.Assertion;
 
-    function composeMessage(message) {
-      var standardMessage = 'expected baseline and screenshot of #{act}';
+    function composeMessage(item, message) {
+      var standardMessage = 'expected baseline and screenshot of \'' +
+          item.name + '\'';
+
+      if (item.selector) {
+        standardMessage = standardMessage + ' (' + item.selector + ')';
+      }
 
       return {
         affirmative: standardMessage + ' to ' + message,
@@ -19,30 +26,32 @@ module.exports = function(mugshot, testRunnerCtx) {
     }
 
     function mugshotProperty(name, message) {
-      var msg = composeMessage(message);
 
       Assertion.addProperty(name, function() {
-        var _this = this,
-            captureItem = this._obj;
 
-        return new Promise(function(resolve, reject) {
-          mugshot.test(captureItem, function(error, result) {
-            if (error) {
-              reject(error);
-            } else {
-              if (testRunnerCtx !== undefined) {
-                testRunnerCtx.result = result;
-              }
+        var captureItem = this._obj;
+        var deferred = Q.defer();
+        var _this = this;
+        var msg = composeMessage(captureItem, message);
 
-              try {
-                _this.assert(result.isEqual, msg.affirmative, msg.negative);
-                resolve();
-              } catch (error) {
-                reject(error);
-              }
+        mugshot.test(captureItem, function(error, result) {
+          if (error) {
+            deferred.reject(error);
+          } else {
+            if (testRunnerCtx !== undefined) {
+              testRunnerCtx.result = result;
             }
-          });
+
+            try {
+              _this.assert(result.isEqual, msg.affirmative, msg.negative);
+              deferred.resolve();
+            } catch (error) {
+              deferred.reject(error);
+            }
+          }
         });
+
+        return deferred.promise;
       });
     }
 
