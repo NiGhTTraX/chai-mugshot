@@ -1,5 +1,3 @@
-var Q = require('q');
-
 /**
  * Chai-Mugshot Plugin
  *
@@ -28,30 +26,28 @@ module.exports = function(mugshot, testRunnerCtx) {
     function mugshotProperty(name, message) {
 
       Assertion.addProperty(name, function() {
+        var _this = this,
+            captureItem = this._obj,
+            msg = composeMessage(captureItem, message);
 
-        var captureItem = this._obj;
-        var deferred = Q.defer();
-        var _this = this;
-        var msg = composeMessage(captureItem, message);
+        return new Promise(function(resolve, reject) {
+          mugshot.test(captureItem, function(error, result) {
+            if (error) {
+              reject(error);
+            } else {
+              if (testRunnerCtx !== undefined) {
+                testRunnerCtx.result = result;
+              }
 
-        mugshot.test(captureItem, function(error, result) {
-          if (error) {
-            deferred.reject(error);
-          } else {
-            if (testRunnerCtx !== undefined) {
-              testRunnerCtx.result = result;
+              try {
+                _this.assert(result.isEqual, msg.affirmative, msg.negative);
+                resolve();
+              } catch (error) {
+                reject(error);
+              }
             }
-
-            try {
-              _this.assert(result.isEqual, msg.affirmative, msg.negative);
-              deferred.resolve();
-            } catch (error) {
-              deferred.reject(error);
-            }
-          }
+          });
         });
-
-        return deferred.promise;
       });
     }
 
