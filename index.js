@@ -9,8 +9,13 @@ module.exports = function(mugshot, testRunnerCtx) {
   return function(chai) {
     var Assertion = chai.Assertion;
 
-    function composeMessage(message) {
-      var standardMessage = 'expected baseline and screenshot of #{act}';
+    function composeMessage(item, message) {
+      var standardMessage = 'expected baseline and screenshot of \'' +
+          item.name + '\'';
+
+      if (item.selector) {
+        standardMessage = standardMessage + ' (' + item.selector + ')';
+      }
 
       return {
         affirmative: standardMessage + ' to ' + message,
@@ -19,11 +24,11 @@ module.exports = function(mugshot, testRunnerCtx) {
     }
 
     function mugshotProperty(name, message) {
-      var msg = composeMessage(message);
 
       Assertion.addProperty(name, function() {
         var _this = this,
-            captureItem = this._obj;
+            captureItem = this._obj,
+            msg = composeMessage(captureItem, message);
 
         return new Promise(function(resolve, reject) {
           mugshot.test(captureItem, function(error, result) {
