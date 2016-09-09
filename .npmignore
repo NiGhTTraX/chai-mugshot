@@ -1,0 +1,4 @@
+test/
+.npmignore
+.eslintrc
+.travis.yml
