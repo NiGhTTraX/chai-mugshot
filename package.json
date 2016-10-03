@@ -2,6 +2,11 @@
   "name": "chai-mugshot",
   "version": "0.3.1",
   "description": "Chai plugin for Mugshot visual testing lib",
+  "contributors": [{
+    "name": "Florentin Simion"
+  }, {
+    "name": "Adela Istrate"
+  }],
   "main": "index.js",
   "scripts": {
     "test": "mocha",
