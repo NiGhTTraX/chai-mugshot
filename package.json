@@ -24,7 +24,6 @@
     "assertion",
     "expect"
   ],
-  "author": "Simion Florentin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/uberVU/chai-mugshot/issues"
